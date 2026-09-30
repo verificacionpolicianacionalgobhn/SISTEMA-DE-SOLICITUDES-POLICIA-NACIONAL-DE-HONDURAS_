@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SISTEMA DE SOLICITUDES | POLICIA NACIONAL DE HONDURAS</title><link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+<div class="bg"></div>
+
+<main class="page">
+  <div class="brand-logo">
+    <img src="assets/logo_principal.png" alt="Logo principal">
+  </div>
+  <section class="card">
+    <header class="topbar">
+      <div class="title">
+        <i data-lucide="shield-check"></i>
+        <span>VERIFICACIÓN DE CONSTANCIAS</span>
+      </div>
+      <div class="right-tools">
+        <button id="qrBtn" class="qr" title="Escanear código QR" aria-label="Escanear código QR">
+          <i data-lucide="qr-code" class="lucide-qr"></i>
+          <svg class="qr-fallback" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M14 14h3v3h-3zM18 18h3v3h-3zM18 14h3M14 18v3M10 3v3M3 10h3M10 18h1M18 10v1" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        <img src="assets/logo_secundario.png" class="small-logo" alt="Logo">
+      </div>
+    </header>
+
+    <div class="blue-line"></div>
+
+    <section class="content">
+      <div class="section-bar">
+        <i data-lucide="shield-check"></i>
+        <span>INFORMACIÓN DEL DOCUMENTO AUTORIZADO</span>
+      </div>
+
+      <div class="fields">
+        <div>
+          <label>NOMBRE DEL CIUDADANO / RAZÓN SOCIAL</label>
+          <div class="input-like" id="nombre"></div>
+        </div>
+        <div>
+          <label>DOCUMENTO DE IDENTIFICACIÓN</label>
+          <div class="input-like" id="identificacion"></div>
+        </div>
+        <div class="full">
+          <label>FECHA Y HORA DEL REGISTRO EN SISTEMA</label>
+          <div class="input-like" id="fecha"></div>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="preview-head">
+        <div>
+          <div class="preview-title">
+            <i data-lucide="file-text"></i>
+            <span>Pre-visualización de Seguridad</span>
+          </div>
+          <span class="status"><i data-lucide="circle-check"></i> DOCUMENTO ORIGINAL VERIFICADO</span>
+        </div>
+        <button id="download" class="download">
+          <i data-lucide="download"></i>
+          DESCARGAR ORIGINAL (PDF)
+        </button>
+      </div>
+
+      <div class="document-preview">
+        <img id="documento" src="" alt="Documento">
+      </div>
+    </section>
+
+  </section>
+  <div class="site-footer">© 2026 Policía Nacional de Honduras - Dirección de Telemática</div>
+</main>
+
+<div id="qrModal" class="modal" hidden>
+  <div class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+    <button id="closeQr" class="qr-dialog-close" aria-label="Cerrar">×</button>
+
+    <h2 id="qrTitle">ESCANEAR CÓDIGO QR</h2>
+    <p class="qr-subtitle">Apunta la cámara al código QR del documento.</p>
+
+    <div class="qr-camera-box">
+      <video id="video" playsinline muted></video>
+      <canvas id="canvas" hidden></canvas>
+      <div class="qr-target"></div>
+      <div id="scanText" class="scan-text">Apunta al código QR del documento...</div>
+    </div>
+
+    <div id="result" class="result" hidden></div>
+
+    <div class="qr-actions">
+      <button id="startCamera" class="qr-start">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 7l1.5-2h7L17 7h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        INICIAR CÁMARA
+      </button>
+      <button id="stopCamera" class="qr-stop">CERRAR ESCÁNER</button>
+    </div>
+  </div>
+</div>
+
+<script src="datos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
